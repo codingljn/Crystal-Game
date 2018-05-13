@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Crystal Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!--Added jumbotron (centered) with instructions and age warning-->
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container text-center">
+                <h1 class="display-4">The Crystal Game!</h1>
+                <p class="lead">Collect the crystals in the right order to reach the magic number! Succeed and you may be rewarded. Fail and you shall perish!...although you can always try again.</p>
+                <p class="age">Ages 4+</p>
+            </div>
+        </div>
+        
+        <div class="row">
+        <!--Left side (when in full screen)-->  
+            <div class="col-lg-6">
+        <!--Added magic number section-->
+                <div class="section">
+                    <div class="section heading">
+                        <h2 class="section title text-center">Magic Number:</h2>
+                    </div>
+                    <div class="section body text-center">
+                            <p id="magic-number">null</p>
+                    </div>
+                </div>
+                <br>
+         <!--Added section for crystals-->
+                <div class="section">
+                    <div class="section heading">
+                        <h2 class="section title text-center">Choose a Crystal!</h2>
+                    </div>
+                    <div class="section body text-center">
+                            <button id="button1" value="null"><img src="assets/images/amethyst.jpg" alt="purple crystal" height="100px" width="100px"></button>
+                            <button id="button2" value="null"><img src="assets/images/3710.jpg" alt="yellow crystal" height="100px" width="100px"></button>
+                            <button id="button3" value="null"><img src="assets/images/5123.jpg" alt="blue crystal" height="100px" width="100px"></button>
+                            <button id="button4" value="null"><img src="assets/images/Green Calcite.jpg" alt="green crystal" height="100px" width="100px"></button>
+                    </div>
+                </div>
+                <br>
+         <!--Added section for the score-->
+                <div class="section">
+                        <div class="section heading">
+                            <h2 class="section title text-center">Your Number:</h2>
+                        </div>
+                        <div class="section body text-center">
+                                <p id="your-number">0</p>
+                        </div>
+                    </div>
+
+            </div>
+
+         <!--Right side (when in full screen)-->   
+            <div class="col-lg-6">
+         <!--Added section for the number of user wins--> 
+                <div class="section">
+                    <div class="section heading">
+                        <h2 class="section title text-center">Total Wins:</h2>
+                    </div>
+                    <div class="section body text-center">
+                            <p id="wins">0</p>
+                    </div>
+                    <br>
+                </div>
+        <!--Added section for the number of user losses--> 
+                <div class="section">
+                    <div class="section heading">
+                        <h2 class="section title text-center">Total Losses:</h2>
+                    </div>
+                    <div class="section body text-center">
+                            <p id="losses">0</p>
+                     </div>
+                </div>
+             </div>
+        </div>
+
+
+<!--JavaScript-->
+<script>
+// Declare variables
+
+var yourNumber = 0;
+var magicNumber = 0;
+var crystalPoints = [];
+var wins = 0;
+var losses = 0;
+
+// Restart game
+
+function resetGame() {
+    yourNumber = 0;
+
+// Get browser to set a new goal between 10 and 100
+
+    magicNumber = Math.floor(Math.random()*100) + 10;
+
+// Give crystals new values between 1 and 15
+
+    for (var i = 0; i < 4; i++) {
+        crystalPoints[i] = Math.floor(Math.random()*15) + 1;
+        $("#button" + (i+1)).attr("value", crystalPoints[i]);
+    }
+
+// Update user on magic and current numbers
+
+    $("#magic-number").text(magicNumber);
+    $("#your-number").text(yourNumber);
+}
+
+// Start game
+resetGame();
+
+$(document).ready(function() {
+
+// When a crystal button is clicked
+    $("button").on("click", function (){
+
+        if (yourNumber < magicNumber) {
+            yourNumber += parseInt(this.value);
+
+        if (yourNumber > magicNumber) {
+            losses++;
+            alert("Sorry! Try again")
+            }
+
+        else if (yourNumber === magicNumber) {
+            wins++;
+            alert("Nice job! You Win!")    
+            }
+        }
+        else { resetGame();}
+
+// Update html
+$("#your-number").text(yourNumber);
+$("#wins").text(wins);
+$("#losses").text(losses);
+
+    });
+});
+
+</script>
+    
+</body>
+</html>

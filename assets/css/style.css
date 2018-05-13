@@ -1,0 +1,24 @@
+body {
+    background-image: url("../images/blue-crystal.jpg");
+}
+
+.section.heading {
+    background: rgb(37, 60, 80);
+    color: aliceblue
+}
+
+.section.body {
+    background: aliceblue;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.jumbotron {
+    background: white;
+    padding: 32px 0px 32px 0px;
+}
+
+.display-4 {
+    font-weight: 700;
+    color: rgb(35, 35, 114);
+}
