@@ -1,3 +1,5 @@
+<!--JavaScript-->
+
 // Declare variables
 
 var yourNumber = 0;
@@ -8,7 +10,7 @@ var losses = 0;
 
 // Restart game
 
-function resetGame() {
+function reset() {
     yourNumber = 0;
 
 // Get browser to set a new goal between 10 and 100
@@ -29,7 +31,7 @@ function resetGame() {
 }
 
 // Start game
-resetGame();
+reset();
 
 $(document).ready(function() {
 
@@ -42,14 +44,14 @@ $(document).ready(function() {
         if (yourNumber > magicNumber) {
             losses++;
             alert("Sorry! Try again")
-        }
+            }
 
         else if (yourNumber === magicNumber) {
             wins++;
-            alert("Nice job! You Win!")
+            alert("Nice job! You Win!")    
+            }
         }
-        }
-        else { resetGame();}
+        else { reset();}
 
 // Update html
 $("#your-number").text(yourNumber);
